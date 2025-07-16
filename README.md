@@ -16,20 +16,26 @@ Enables Claude Code (running in WSL) to control Chrome browser (running on Windo
 2. Chrome browser on Windows
 3. Chrome MCP extension installed from: https://github.com/hangwin/mcp-chrome
 
-## Quick Setup
+## Quick Setup (Set and Forget!)
 
-### Step 1: Run WSL Setup
+### One-Time Setup
 ```bash
 cd ~/chromemcphangwinclaudecode
-./scripts/setup-chrome-mcp-wsl.sh
+./setup-once.sh
 ```
 
-### Step 2: Run Windows Setup (as Administrator)
-Open PowerShell as Administrator and run:
-```powershell
-cd \\wsl$\Ubuntu\home\info0\chromemcphangwinclaudecode
-.\scripts\setup-wsl-connection.ps1
-```
+This will:
+1. Install Chrome MCP in WSL
+2. Configure it to use localhost (no IP changes needed!)
+3. Give you the Windows command to run
+
+### Run Windows Setup (as Administrator)
+After running setup-once.sh, copy the command it shows and run in PowerShell as Admin.
+
+Then:
+1. Run: `wsl --shutdown`
+2. Start WSL again
+3. Done forever! No IP updates needed
 
 ### Step 3: Start Chrome with Extension
 1. Open Chrome on Windows
@@ -48,12 +54,9 @@ If successful, Chrome will open Google.com.
 ## Troubleshooting
 
 ### Connection Failed
-If Chrome MCP isn't working:
+With the static IP setup, you shouldn't need to update IPs anymore!
 
-1. Update Windows IP in WSL:
-```bash
-./scripts/update-wsl-ip.sh
-```
+If Chrome MCP isn't working:
 
 2. Check Chrome extension is running:
 - Look for server at http://127.0.0.1:12306/mcp
@@ -83,7 +86,7 @@ If direct connection fails, use the proxy:
 - Windows firewall must allow port 12306
 - Chrome must be running before using MCP tools
 - Restart Claude Code after configuration changes
-- The Windows host IP may change - use update-wsl-ip.sh if needed
+- Uses static localhost configuration - no IP updates needed!
 
 ## Simple Test Commands
 

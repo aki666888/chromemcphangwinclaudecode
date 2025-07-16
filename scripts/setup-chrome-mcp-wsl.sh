@@ -25,16 +25,13 @@ echo "Node.js version: $(node --version)"
 echo "Installing mcp-chrome-bridge..."
 npm install -g mcp-chrome-bridge
 
-# Find and update stdio-config.json
-WIN_HOST=$(ip route show | grep -i default | awk '{print $3}')
-echo "Windows host IP: $WIN_HOST"
-
+# Set up stdio-config.json with localhost (works with WSL2 mirrored networking)
 STDIO_CONFIG=$(find ~/.nvm -name "stdio-config.json" -path "*/mcp-chrome-bridge/*" 2>/dev/null | head -1)
 if [ -n "$STDIO_CONFIG" ]; then
     echo "{
-  \"url\": \"http://$WIN_HOST:12306/mcp\"
+  \"url\": \"http://127.0.0.1:12306/mcp\"
 }" > "$STDIO_CONFIG"
-    echo "Updated stdio-config.json"
+    echo "Updated stdio-config.json to use localhost"
 fi
 
 # Add Chrome MCP to Claude Code

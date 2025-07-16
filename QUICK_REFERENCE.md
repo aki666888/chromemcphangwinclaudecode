@@ -1,18 +1,15 @@
 # Chrome MCP Quick Reference
 
-## One-Time Setup
+## One-Time Setup (Set & Forget!)
 
-### In WSL:
+### Run this ONCE:
 ```bash
 cd ~/chromemcphangwinclaudecode
-./scripts/setup-chrome-mcp-wsl.sh
+./setup-once.sh
 ```
 
-### In Windows PowerShell (Admin):
-```powershell
-cd \\wsl$\Ubuntu\home\info0\chromemcphangwinclaudecode
-.\scripts\setup-wsl-connection.ps1
-```
+Follow the instructions it gives you.
+After setup, Chrome MCP will always work with localhost!
 
 ### Restart Claude Code
 
@@ -35,11 +32,8 @@ Ask Claude Code:
 ## Troubleshooting
 
 ### If connection fails:
-```bash
-cd ~/chromemcphangwinclaudecode
-./scripts/update-wsl-ip.sh
-```
-Then restart Claude Code
+With static IP setup, connection should always work!
+Just ensure Chrome extension is running.
 
 ### Alternative proxy method:
 ```bash
